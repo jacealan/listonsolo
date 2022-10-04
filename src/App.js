@@ -2,7 +2,10 @@ import { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 
 function App() {
+  const [playNumber, setPlayNumber] = useState(0)
   const [playUrl, setPlayUrl] = useState()
+  const [inputUrl, setInputUrl] = useState('')
+  const [checkUrl, setCheckUrl] = useState('')
   const playList = [
     {title: '멜로망스 킬링보이스', url: 'https://youtu.be/hn4XiirKdNE'},
     {title: '치즈 킬링보이스', url: 'https://youtu.be/fyDz91HDt4g'},
@@ -11,14 +14,14 @@ function App() {
     {title: '벤 킬링보이스', url: 'https://youtu.be/4bwRyeT1afM'},
   ]
 
-  const [info, setInfo] = useState({})
-  const getInfo = async (url) => {
+  const [inputUrlInfo, setInputUrlInfo] = useState({})
+  const getUrlInfo = async (url) => {
     const response = await fetch(`https://noembed.com/embed?dataType=json&url=${url}`)
                       .then((response) => response.json());
-    setInfo(response)
+    setInputUrlInfo(response)
   }
   useEffect(() => {
-    getInfo('https://youtu.be/fyDz91HDt4g')
+    getUrlInfo('https://youtu.be/fyDz91HDt4g')
   }, [])
   
   return (
@@ -27,14 +30,20 @@ function App() {
       <div className="list-title">the Playlist</div>
       
       <div className="play-window">
-        <ReactPlayer url='https://youtu.be/5ch94AaPZRQ' width="960px" height="480px" />        
+        <ReactPlayer url='https://youtu.be/5ch94AaPZRQ' width="960px" height="480px" />
       </div>
       <div className="play-info">
-        {info.title}
+        {inputUrlInfo.title}
       </div>
 
       <div className="add-list">
-
+        <input type="text" placeholder="추가할 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
+        <button onClick={() => {
+          setCheckUrl(inputUrl);
+          getUrlInfo(inputUrl);
+          }}>Check</button>
+        <ReactPlayer url={checkUrl} width="480px" height="240px" />
+        <div>{JSON.stringify(inputUrlInfo)}</div>
       </div>
 
       <div classname="play-list">
@@ -72,6 +81,8 @@ function App() {
         }
         .add-list {
           grid-area: 5 / 1 / 6 / 2;
+          word-wrap: break-word;
+          max-width: 480px;
         }
 
         .play-list {
