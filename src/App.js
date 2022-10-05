@@ -21,9 +21,28 @@ function App() {
                       .then((response) => response.json());
     setInputUrlInfo(response)
   }
-  // useEffect(() => {
-  //   getUrlInfo('https://youtu.be/fyDz91HDt4g')
-  // }, [])
+
+  const [windowSize, setWindowSize] = useState({x: 960, y: 960})
+  useEffect(() => {
+    const x960 = window.innerWidth < 960 ? window.innerWidth : 960
+    setWindowSize({
+      x: x960,
+      y: window.innerHeight,
+      xPlay: x960,
+      yPlay: parseInt(x960 / 2),
+      xHalf: parseInt(x960 / 2),
+    })
+    window.addEventListener('resize', () => {
+      const x960 = window.innerWidth < 960 ? window.innerWidth : 960
+      setWindowSize({
+        x: x960,
+        y: window.innerHeight,
+        xPlay: x960,
+        yPlay: parseInt(x960 / 2),
+        xHalf: parseInt(x960 / 2),
+      })
+    });
+  }, [])
   
   return (
     <div className="App">
@@ -31,7 +50,7 @@ function App() {
       <div className="list-title">the Playlist</div>
       
       <div className="play-window">
-        <ReactPlayer url={playList[0].url} controls="true" width="960px" height="480px" />
+        <ReactPlayer url={playList[0].url} controls="true" width={windowSize.xPlay} height={windowSize.yPlay} />
       </div>
       <div className="play-info">
         {playList[0].title}
@@ -84,15 +103,15 @@ function App() {
         }
         .add-list {
           width: 100%;
-          max-width: 390px;
+          max-width: ${windowSize.xHalf}px;
           grid-area: 5 / 1 / 6 / 2;
-          
+
           word-wrap: break-word;
         }
 
         .play-list {
           width: 100%;
-          max-width: 390px;
+          max-width: ${windowSize.xHalf}px;
           grid-area: 5 / 2 / 6 / 3;
         }
       `}</style>
