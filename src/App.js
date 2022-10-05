@@ -123,7 +123,7 @@ function App() {
           font-weight: 1000;
         }
         #logo-image {
-          margin-right: 5px;
+          margin: 0 5px;
         }
 
         .list-info {
