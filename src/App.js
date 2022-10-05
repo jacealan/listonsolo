@@ -23,7 +23,7 @@ function App() {
   }
 
   const [windowSize, setWindowSize] = useState({x: 960, y: 960})
-  useEffect(() => {
+  const changeSizeTotal = () => {
     const x960 = window.innerWidth < 960 ? window.innerWidth : 960
     setWindowSize({
       x: x960,
@@ -32,26 +32,39 @@ function App() {
       yPlay: parseInt(x960 / 2),
       xHalf: parseInt(x960 / 2),
     })
-    window.addEventListener('resize', () => {
-      const x960 = window.innerWidth < 960 ? window.innerWidth : 960
-      setWindowSize({
-        x: x960,
-        y: window.innerHeight,
-        xPlay: x960,
-        yPlay: parseInt(x960 / 2),
-        xHalf: parseInt(x960 / 2),
-      })
-    });
-    window.addEventListener('orientationchange', () => {
-      const x960 = window.innerWidth < 960 ? window.innerWidth : 960
-      setWindowSize({
-        x: x960,
-        y: window.innerHeight,
-        xPlay: x960,
-        yPlay: parseInt(x960 / 2),
-        xHalf: parseInt(x960 / 2),
-      })
-    });
+  }
+  useEffect(() => {
+    // const x960 = window.innerWidth < 960 ? window.innerWidth : 960
+    // setWindowSize({
+    //   x: x960,
+    //   y: window.innerHeight,
+    //   xPlay: x960,
+    //   yPlay: parseInt(x960 / 2),
+    //   xHalf: parseInt(x960 / 2),
+    // })
+    changeSizeTotal()
+    window.addEventListener('resize', changeSizeTotal);
+    window.addEventListener('orientationchange', changeSizeTotal);
+    // window.addEventListener('resize', () => {
+    //   const x960 = window.innerWidth < 960 ? window.innerWidth : 960
+    //   setWindowSize({
+    //     x: x960,
+    //     y: window.innerHeight,
+    //     xPlay: x960,
+    //     yPlay: parseInt(x960 / 2),
+    //     xHalf: parseInt(x960 / 2),
+    //   })
+    // });
+    // window.addEventListener('orientationchange', () => {
+    //   const x960 = window.innerWidth < 960 ? window.innerWidth : 960
+    //   setWindowSize({
+    //     x: x960,
+    //     y: window.innerHeight,
+    //     xPlay: x960,
+    //     yPlay: parseInt(x960 / 2),
+    //     xHalf: parseInt(x960 / 2),
+    //   })
+    // });
   }, [])
   
   return (
