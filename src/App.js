@@ -171,6 +171,7 @@ function App() {
         }
 
         .play-thumbnail {
+          margin-bottom: 30px;
           grid-area: 5 / 1 / 6 / 3;
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
