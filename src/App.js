@@ -7,15 +7,15 @@ function App() {
   const [inputUrl, setInputUrl] = useState('')
   const [checkUrl, setCheckUrl] = useState('')
   const listBox = [
-    {idx: 0, title: '킬링보이스 BEST', description: '킬링보이스 Nice', username: 'jace'},
+    {idx: 0, title: '킬링보이스 BEST', description: '딩고 뮤직 킬링보이스', username: 'jace'},
   ]
   const playList = [
-    {title: 'SMILEY (YENA)', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/y9kkXTucnLU' , thumbnail: 'https://i.ytimg.com/vi/y9kkXTucnLU/hqdefault.jpg'},
-    {title: '멜로망스 킬링보이스', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/hn4XiirKdNE', thumbnail: 'https://i.ytimg.com/vi/hn4XiirKdNE/hqdefault.jpg'},
-    {title: '치즈 킬링보이스', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/fyDz91HDt4g', thumbnail: 'https://i.ytimg.com/vi/fyDz91HDt4g/hqdefault.jpg'},
-    {title: '태연 킬링보이스', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ch94AaPZRQ', thumbnail: 'https://i.ytimg.com/vi/5ch94AaPZRQ/hqdefault.jpg'},
-    {title: '나윤권 킬링보이스', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4w3p3ef2ydQ', thumbnail: 'https://i.ytimg.com/vi/4w3p3ef2ydQ/hqdefault.jpg'},
-    {title: '벤 킬링보이스', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4bwRyeT1afM', thumbnail: 'https://i.ytimg.com/vi/4bwRyeT1afM/hqdefault.jpg'},
+    {title: 'YENA (최예나) - SMILEY (Feat. BIBI) MV', author: 'Stone Music Entertainment', provider: 'YouTube', url: 'https://youtu.be/y9kkXTucnLU' , thumbnail: 'https://i.ytimg.com/vi/y9kkXTucnLU/hqdefault.jpg'},
+    {title: '멜로망스(MeloMance)의 킬링보이스를 라이브로! - 인사, 동화, 입맞춤, You, 고백, 질투가좋아, 부끄럼, 선물, 짙어져, 좋은날, 욕심, 사랑인가봐, 축제, 초대', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/hn4XiirKdNE', thumbnail: 'https://i.ytimg.com/vi/hn4XiirKdNE/hqdefault.jpg'},
+    {title: '치즈(CHEEZE)의 킬링보이스를 라이브로!- Madeleine Love, 어떻게 생각해, Mood Indigo, 빈칸에게, 퐁당, Perhaps Love, 좋아해 | 딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/fyDz91HDt4g', thumbnail: 'https://i.ytimg.com/vi/fyDz91HDt4g/hqdefault.jpg'},
+    {title: '태연(TAEYEON)의 킬링보이스를 라이브로! - I,그대라는 시,만약에,11:11,Blue,Time Lapse,Weekend,불티,사계,Gravity,INVU,너를 그리는 시간', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ch94AaPZRQ', thumbnail: 'https://i.ytimg.com/vi/5ch94AaPZRQ/hqdefault.jpg'},
+    {title: '나윤권(Na Yoon Kwon)의 킬링보이스를 라이브로!-나였으면,기대,동감,애창곡,바람이좋은날,약한남자,뒷모습,멍청이,오늘이지나면,헤어져보자ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4w3p3ef2ydQ', thumbnail: 'https://i.ytimg.com/vi/4w3p3ef2ydQ/hqdefault.jpg'},
+    {title: '벤(BEN)의 킬링보이스를 라이브로! - 열애중,오늘은가지마,꿈처럼,갈수가없어,눈사람,헤어져줘서고마워,빈방, LoobyLoo,내목소리들리니,180도,혼술하고싶은밤,지금뭐해ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4bwRyeT1afM', thumbnail: 'https://i.ytimg.com/vi/4bwRyeT1afM/hqdefault.jpg'},
   ]
 
   const [inputUrlInfo, setInputUrlInfo] = useState('')
@@ -67,13 +67,16 @@ function App() {
           width={windowSize.xPlay} height={windowSize.yPlay} />
       </div>
       <div className="play-info">
-        <div className="play-title"><img id="play-image" src="/play.svg" width="20px"/>&nbsp;{playList[playNumber].title}</div>
-        <div className="play-author">[{playList[playNumber].provider}] {playList[playNumber].author}</div>
+        <div className="play-image"><img id="play-image" src="/play.svg" width="20px"/></div>
+        <div>
+          <div>{playList[playNumber].title}</div>
+          <div className="play-author">[{playList[playNumber].provider}] {playList[playNumber].author}</div>
+        </div>
       </div>
       <div className="play-thumbnail">
         {playList.map(({title, author, provider, url, thumbnail}, index) => (
           <div>
-            <img src={thumbnail} title={title} onClick={() => setPlayNumber(index)} width="90px" height="auto" />
+            <img src={thumbnail} title={title} onClick={() => setPlayNumber(index)} width="auto" height="64px" />
           </div>
         ))}
       </div>
@@ -90,12 +93,15 @@ function App() {
         )) : ""}</div>
       </div>
 
-      <div classname="play-list">
+      <div className="play-list">
         { playList.map(({title, author, provider, url, thumbnail}, index) => (
-          <div>
-            <ReactPlayer url={url} width="180px" height="auto" />
-            <img src={thumbnail} width="160px" height="auto" />
-            {index} {title} {url}
+          <div className="play-list-one">
+            {/* <ReactPlayer url={url} width="180px" height="auto" /> */}
+            <div className="play-list-one-image"><img src={thumbnail} width="100%" height="auto" /></div>
+            <div className="play-list-one-info">
+              <div className="play-list-one-info-title">{title}</div>
+              <div className="play-list-one-info-author">[ {author} ]</div>
+            </div>
           </div>
         ))}
       </div>
@@ -149,6 +155,11 @@ function App() {
           padding: 5px 10px;
           border-radius: 0 0 10px 10px;
           background-color: #444;
+          display: grid;
+          grid-template-columns: 27px 1fr;
+        }
+        .play-image {
+          padding-top: 1px;
         }
         .play-title {
           display: flex;
@@ -183,6 +194,22 @@ function App() {
           width: 100%;
           max-width: ${windowSize.xHalf}px;
           grid-area: 6 / 2 / 7 / 3;
+        }
+        .play-list-one {
+          display: grid;
+          grid-template-columns: 1fr 3fr;
+        }
+        .play-list-one-image {
+          margin-right: 10px;
+        }
+        .play-list-one-info {
+          font-size: 0.8rem;
+        }
+        .play-list-one-info-title {
+        }
+        .play-list-one-info-author {
+          font-size: 0.7rem;
+          transform: skew(170deg);
         }
       `}</style>
     </div>
