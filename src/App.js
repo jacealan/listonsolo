@@ -35,7 +35,8 @@ function App() {
 
   const [windowSize, setWindowSize] = useState({x: 960, y: 960})
   const changeSizeTotal = () => {
-    const x960 = window.innerWidth < 960 ? window.innerWidth : 960
+    const x960 = document.documentElement.clientWidth < 960 ? document.documentElement.clientWidth : 960
+    // const x960 = window.innerWidth < 960 ? window.innerWidth : 960
     setWindowSize({
       x: x960,
       y: window.innerHeight,
@@ -227,7 +228,6 @@ function App() {
         }
 
         footer {
-          width: 100%;
           margin-top: 20px;
           border-top: solid #555 1px;
           padding: 10px;
