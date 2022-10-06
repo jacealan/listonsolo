@@ -2,15 +2,16 @@ import { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 
 function App() {
+  const [editMode, setEditMode] = useState(false)
   const [playNumber, setPlayNumber] = useState(0)
   const [playUrl, setPlayUrl] = useState()
   const [inputUrl, setInputUrl] = useState('')
   const [checkUrl, setCheckUrl] = useState('')
   const listBox = [
-    {idx: 0, title: '킬링보이스 BEST', description: '딩고 뮤직 킬링보이스', username: 'jace'},
+    {idx: 0, title: 'BEST LIST', description: '딩고 뮤직 킬링보이스 & ...', username: 'jace'},
   ]
   const playList = [
-    {title: 'YENA (최예나) - SMILEY (Feat. BIBI) MV', author: 'Stone Music Entertainment', provider: 'YouTube', url: 'https://youtu.be/y9kkXTucnLU' , thumbnail: 'https://i.ytimg.com/vi/y9kkXTucnLU/hqdefault.jpg'},
+    // {title: 'YENA (최예나) - SMILEY (Feat. BIBI) MV', author: 'Stone Music Entertainment', provider: 'YouTube', url: 'https://youtu.be/y9kkXTucnLU' , thumbnail: 'https://i.ytimg.com/vi/y9kkXTucnLU/hqdefault.jpg'},
     {title: '멜로망스(MeloMance)의 킬링보이스를 라이브로! - 인사, 동화, 입맞춤, You, 고백, 질투가좋아, 부끄럼, 선물, 짙어져, 좋은날, 욕심, 사랑인가봐, 축제, 초대', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/hn4XiirKdNE', thumbnail: 'https://i.ytimg.com/vi/hn4XiirKdNE/hqdefault.jpg'},
     {title: '치즈(CHEEZE)의 킬링보이스를 라이브로!- Madeleine Love, 어떻게 생각해, Mood Indigo, 빈칸에게, 퐁당, Perhaps Love, 좋아해 | 딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/fyDz91HDt4g', thumbnail: 'https://i.ytimg.com/vi/fyDz91HDt4g/hqdefault.jpg'},
     {title: '태연(TAEYEON)의 킬링보이스를 라이브로! - I,그대라는 시,만약에,11:11,Blue,Time Lapse,Weekend,불티,사계,Gravity,INVU,너를 그리는 시간', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ch94AaPZRQ', thumbnail: 'https://i.ytimg.com/vi/5ch94AaPZRQ/hqdefault.jpg'},
@@ -54,7 +55,8 @@ function App() {
       <div className="logo">
         <img id="logo-image" src="/logo.svg" width="20px"/> ListOn
       </div>
-      <div className="list-info" title={listBox[0].description}>
+
+      <div className="list-info" title={listBox[0].description} onClick={() => setEditMode((prev => !prev))}>
         <div className="list-title"><img id="list-image" src="/list.svg" width="20px"/>&nbsp;{listBox[0].title}</div>
         <div className="list-author">&nbsp;-&nbsp;listed by @{listBox[0].username}</div>
       </div>
@@ -106,6 +108,11 @@ function App() {
           </div>
         ))}
       </div>
+      
+      <footer>
+        <div>ⓒ Jace</div>
+      </footer>
+      {/* <div claaName="footer"></div> */}
       <style jsx>{`
         .App {
           width: 100vw;
@@ -185,14 +192,15 @@ function App() {
         }
 
         .add-list {
+          ${editMode ? "display: block;" : "display: none;"}
           width: 100%;
           max-width: ${windowSize.xHalf}px;
           grid-area: 6 / 1 / 7 / 2;
-
           word-wrap: break-word;
         }
 
         .play-list {
+          ${editMode ? "display: block;" : "display: none;"}
           width: 100%;
           max-width: ${windowSize.xHalf}px;
           grid-area: 6 / 2 / 7 / 3;
@@ -212,6 +220,17 @@ function App() {
         .play-list-one-info-author {
           font-size: 0.7rem;
           transform: skew(170deg);
+        }
+
+        footer {
+          width: 100%;
+          margin-top: 20px;
+          border-top: solid #555 1px;
+          padding-top: 10px;
+          grid-column: 1 / 3;
+          display: flex;
+          justify-content: center;
+          color: #777;
         }
       `}</style>
     </div>
