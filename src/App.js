@@ -24,13 +24,15 @@ function App() {
   const getUrlInfo = async (url) => {
     const response = await fetch(`https://noembed.com/embed?dataType=json&url=${url}`)
                       .then((response) => response.json());
-    let urlInfo = []
+    console.log(response)
+    setInputUrlInfo(response)
+    let urlInfo = {}
     Object.keys(response).map((key, index) => {
       console.log(key, response[key])
-      urlInfo.push(`${key} : ${response[key]}`)
+      // urlInfo[key] = ${response[key]}`)
   })
     
-    setInputUrlInfo(urlInfo)
+    // setInputUrlInfo(urlInfo)
   }
 
   const [windowSize, setWindowSize] = useState({x: 960, y: 960})
@@ -85,16 +87,28 @@ function App() {
         ))}
       </div>
 
-      <div className="add-list">
-        <input type="text" placeholder="영상 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
-        <button onClick={() => {
-          setCheckUrl(inputUrl);
-          getUrlInfo(inputUrl);
-          }}>Check</button>
-        <ReactPlayer url={checkUrl} width="390px" height="195px" />
-        <div>{inputUrlInfo ? inputUrlInfo.map((info, index) => (
-          <div>{info}</div>
-        )) : ""}</div>
+      <div className="add-check">
+        <div>영상 추가
+          <input type="text" placeholder="영상 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
+          <button onClick={() => {
+            setCheckUrl(inputUrl);
+            getUrlInfo(inputUrl);
+            }}>Check</button>
+        </div>
+        <div>{inputUrlInfo !== '' ? (
+          <>
+            <div className="add-check-play">
+              <ReactPlayer url={checkUrl} width="470px" height="235px" />
+            </div>
+            <div className="add-template">
+              <div className="add-template-image"><img src={inputUrlInfo.thumbnail_url} width="100%" height="auto" /></div>
+              <div className="add-template-info">
+                <div className="add-template-info-title">{inputUrlInfo.title}</div>
+                <div className="add-template-info-author">[ {inputUrlInfo.author_name} ]</div>
+              </div>
+            </div>
+          </>
+        ) : ""}</div>
       </div>
 
       <div className="play-list">
@@ -196,18 +210,44 @@ function App() {
           filter: grayscale(0);
         }
 
-        .add-list {
+        .add-check {
           ${editMode ? "display: block;" : "display: none;"}
-          width: 100%;
+          width: calc(100% - 10px);
           max-width: ${windowSize.xHalf}px;
+          margin-right: 10px;
           grid-area: 6 / 1 / 7 / 2;
           word-wrap: break-word;
+        }
+        .add-check-play {
+          margin-top: 10px;
+          border-top: solid #777 1px;
+          padding-top: 10px;
+        }
+        .add-template {
+          margin-top: 10px;
+          border-top: solid #777 1px;
+          padding-top: 10px;
+          display: grid;
+          grid-template-columns: 1fr 3fr;
+        }
+        .add-template-image {
+          margin-right: 10px;
+        }
+        .add-template-info {
+          font-size: 0.8rem;
+        }
+        .add-template-info-title {
+        }
+        .add-template-info-author {
+          font-size: 0.7rem;
+          transform: skew(170deg);
         }
 
         .play-list {
           ${editMode ? "display: block;" : "display: none;"}
-          width: 100%;
+          width: calc(100% - 10px);
           max-width: ${windowSize.xHalf}px;
+          margin-left: 10px;
           grid-area: 6 / 2 / 7 / 3;
         }
         .play-list-one {
