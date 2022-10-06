@@ -86,7 +86,7 @@ function App() {
       </div>
 
       <div className="add-list">
-        <input type="text" placeholder="추가할 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
+        <input type="text" placeholder="영상 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
         <button onClick={() => {
           setCheckUrl(inputUrl);
           getUrlInfo(inputUrl);
