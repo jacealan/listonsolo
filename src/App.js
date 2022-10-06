@@ -110,7 +110,11 @@ function App() {
       </div>
       
       <footer>
-        <div>ⓒ Jace</div>
+        <div className="supported">
+          Fully Supported Media: YouTube, Facebook, SoundClound, Vimeo<br />
+          Supported Media: Treamable, Vidme, Wistia, Twitch, DailyMotion, Vidyard
+        </div>
+        <div className="copyright">ⓒ Jace</div>
       </footer>
       {/* <div claaName="footer"></div> */}
       <style jsx>{`
@@ -226,11 +230,22 @@ function App() {
           width: 100%;
           margin-top: 20px;
           border-top: solid #555 1px;
-          padding-top: 10px;
+          padding: 10px;
           grid-column: 1 / 3;
           display: flex;
-          justify-content: center;
+          justify-content: between-around;
           color: #777;
+        }
+        .supported {
+          width: 100%;
+          font-size: 0.8rem;
+        }
+        .copyright {
+          width: 100px;
+          display: flex;
+          justify-content: flex-end;
+          // align-items: flex-end;
+          // text-align: right;
         }
       `}</style>
     </div>
