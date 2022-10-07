@@ -73,7 +73,7 @@ function App() {
           <div className="list-author">&nbsp;-&nbsp;listed by @{listBox[0].username}</div>
         </div>
         <div className="list-edit" title="Edit List" onClick={() => setEditMode((prev => !prev))}>
-          <img id="edit-image" src="/edit.svg" width="20px" />
+          <img id="edit-list-image" src="/edit-list.svg" width="20px" />
         </div>
       </div>
       
@@ -104,7 +104,7 @@ function App() {
         <div className="add-check-title">ADD</div>
         {/* <hr /> */}
         <div>
-          <input type="text" placeholder="영상 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
+          <input type="text" placeholder="추가할 영상 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
           <button onClick={() => {
             setCheckUrl(inputUrl);
             getUrlInfo(inputUrl);
@@ -124,6 +124,16 @@ function App() {
             </div>
           </>
         ) : ""}</div>
+        <div className="add-check-edit">
+          <div>
+            <input type="text" value={inputUrlInfo.title} onChange={(e) => setInputUrl(e.target.value)}></input>
+            <input type="text" value={inputUrlInfo.author} onChange={(e) => setInputUrl(e.target.value)}></input>
+          </div>
+          <div className="add-check-edit-button">
+            <img id="add-image" src="/add.svg" width="20px"
+              onClick={() => {}} />
+          </div>
+        </div>
       </div>
 
       <div className="play-list">
@@ -137,7 +147,7 @@ function App() {
         { playList.map(({title, author, provider, url, thumbnail}, index) => (
           <div className="play-list-one">
             {/* <ReactPlayer url={url} width="180px" height="auto" /> */}
-            <div className="updown">
+            <div className="upNdown">
               <div>
                 <img id="up-image" src="/up.svg" width="14px"
                   onClick={() => {
@@ -166,6 +176,33 @@ function App() {
             <div className="play-list-one-info">
               <div className="play-list-one-info-title">{title}</div>
               <div className="play-list-one-info-author">[ {author} ]</div>
+            </div>
+            <div className="deleteNedit">
+              <div>
+                <img id="delete-image" src="/delete.svg" width="14px"
+                  onClick={() => {
+                    // if (index !== 0) {
+                    //   const temp = playList[index - 1];
+                    //   playList[index - 1] = playList[index];
+                    //   playList[index] = temp;
+                    //   setPlayList(playList.slice())
+                    // }
+                    playList.splice(index, 1)
+                    setPlayList(playList.slice())
+                  }} />
+              </div>
+              <div>                
+                <img id="edit-image" src="/edit.svg" width="14px"
+                  onClick={() => {
+                    console.log(index, playList.length)
+                    if (index !== playList.length - 1) {
+                      const temp = playList[index + 1];
+                      playList[index + 1] = playList[index];
+                      playList[index] = temp;
+                      setPlayList(playList.slice())
+                    }
+                  }} />
+              </div>
             </div>
           </div>
         ))}
@@ -247,6 +284,7 @@ function App() {
           align-items: center;
         }
         .play-author {
+          padding-right: 10px;
           text-align: right;
           font-size: 0.7rem;
         }
@@ -275,6 +313,20 @@ function App() {
           grid-area: 6 / 1 / 7 / 2;
           word-wrap: break-word;
         }
+        input {
+          width: calc(100% - 100px);
+          border: solid 1px #aaa;
+          border-radius: 5px;
+          padding: 5px;
+          outline: none;
+          background-color: #444;
+          color: #aaa;
+        }
+        button {          
+          width: 85px;
+          border-radius: 5px;
+          padding: 5px;
+        }
         .add-check-title {
           padding: 5px;
           background-color: #444;
@@ -301,8 +353,24 @@ function App() {
         .add-template-info-title {
         }
         .add-template-info-author {
+          padding-right: 10px;
           font-size: 0.7rem;
           transform: skew(170deg);
+          text-align: right;
+        }
+        .add-check-edit {
+          display: grid;
+          grid-template-columns: 1fr 90px;
+        }
+        .add-check-edit-button {
+          margin: 5px;
+          border-radius: 5px;
+          background-color: #555;
+          font-size: 2rem;
+          font-weight: 600;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .play-list {
@@ -327,9 +395,9 @@ function App() {
           border-top: solid #777 1px;
           padding-top: 6px;
           display: grid;
-          grid-template-columns: 20px 1fr 3fr;
+          grid-template-columns: 20px 1fr 3fr 20px;
         }
-        .updown {
+        .upNdown {
           margin: 5px 0;
           display: flex;
           flex-direction: column;
@@ -344,8 +412,16 @@ function App() {
         .play-list-one-info-title {
         }
         .play-list-one-info-author {
+          padding-right: 10px;
           font-size: 0.7rem;
           transform: skew(170deg);
+          text-align: right;
+        }
+        .deleteNedit {
+          margin: 5px 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
         footer {
