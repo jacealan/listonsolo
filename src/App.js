@@ -10,15 +10,23 @@ function App() {
   const listBox = [
     {idx: 0, title: 'BEST LIST', description: '딩고 뮤직 킬링보이스 & ...', username: 'jace'},
   ]
-  const playList = [
+  const playListTemplate = [
     // {title: 'YENA (최예나) - SMILEY (Feat. BIBI) MV', author: 'Stone Music Entertainment', provider: 'YouTube', url: 'https://youtu.be/y9kkXTucnLU' , thumbnail: 'https://i.ytimg.com/vi/y9kkXTucnLU/hqdefault.jpg'},
-    {title: '멜로망스(MeloMance)의 킬링보이스를 라이브로! - 인사, 동화, 입맞춤, You, 고백, 질투가좋아, 부끄럼, 선물, 짙어져, 좋은날, 욕심, 사랑인가봐, 축제, 초대', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/hn4XiirKdNE', thumbnail: 'https://i.ytimg.com/vi/hn4XiirKdNE/hqdefault.jpg'},
-    {title: '치즈(CHEEZE)의 킬링보이스를 라이브로!- Madeleine Love, 어떻게 생각해, Mood Indigo, 빈칸에게, 퐁당, Perhaps Love, 좋아해 | 딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/fyDz91HDt4g', thumbnail: 'https://i.ytimg.com/vi/fyDz91HDt4g/hqdefault.jpg'},
-    {title: '태연(TAEYEON)의 킬링보이스를 라이브로! - I,그대라는 시,만약에,11:11,Blue,Time Lapse,Weekend,불티,사계,Gravity,INVU,너를 그리는 시간', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ch94AaPZRQ', thumbnail: 'https://i.ytimg.com/vi/5ch94AaPZRQ/hqdefault.jpg'},
-    {title: '나윤권(Na Yoon Kwon)의 킬링보이스를 라이브로!-나였으면,기대,동감,애창곡,바람이좋은날,약한남자,뒷모습,멍청이,오늘이지나면,헤어져보자ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4w3p3ef2ydQ', thumbnail: 'https://i.ytimg.com/vi/4w3p3ef2ydQ/hqdefault.jpg'},
-    {title: '벤(BEN)의 킬링보이스를 라이브로! - 열애중,오늘은가지마,꿈처럼,갈수가없어,눈사람,헤어져줘서고마워,빈방, LoobyLoo,내목소리들리니,180도,혼술하고싶은밤,지금뭐해ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4bwRyeT1afM', thumbnail: 'https://i.ytimg.com/vi/4bwRyeT1afM/hqdefault.jpg'},
-    {title: '권진아 (KwonJinAh)의 킬링보이스를 라이브로! - 끝, Lonely Night, Fly Away, 씨스루,여기까지,KNOCK, 위로,운이좋았지,뭔가잘못됐어, 여행가ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ePKBm4spBg', thumbnail: 'https://i.ytimg.com/vi/5ePKBm4spBg/hqdefault.jpg'},
+    {idx: 0, title: '멜로망스(MeloMance)의 킬링보이스를 라이브로! - 인사, 동화, 입맞춤, You, 고백, 질투가좋아, 부끄럼, 선물, 짙어져, 좋은날, 욕심, 사랑인가봐, 축제, 초대', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/hn4XiirKdNE', thumbnail: 'https://i.ytimg.com/vi/hn4XiirKdNE/hqdefault.jpg'},
+    {idx: 1, title: '치즈(CHEEZE)의 킬링보이스를 라이브로!- Madeleine Love, 어떻게 생각해, Mood Indigo, 빈칸에게, 퐁당, Perhaps Love, 좋아해 | 딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/fyDz91HDt4g', thumbnail: 'https://i.ytimg.com/vi/fyDz91HDt4g/hqdefault.jpg'},
+    {idx: 2, title: '태연(TAEYEON)의 킬링보이스를 라이브로! - I,그대라는 시,만약에,11:11,Blue,Time Lapse,Weekend,불티,사계,Gravity,INVU,너를 그리는 시간', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ch94AaPZRQ', thumbnail: 'https://i.ytimg.com/vi/5ch94AaPZRQ/hqdefault.jpg'},
+    {idx: 3, title: '나윤권(Na Yoon Kwon)의 킬링보이스를 라이브로!-나였으면,기대,동감,애창곡,바람이좋은날,약한남자,뒷모습,멍청이,오늘이지나면,헤어져보자ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4w3p3ef2ydQ', thumbnail: 'https://i.ytimg.com/vi/4w3p3ef2ydQ/hqdefault.jpg'},
+    {idx: 4, title: '벤(BEN)의 킬링보이스를 라이브로! - 열애중,오늘은가지마,꿈처럼,갈수가없어,눈사람,헤어져줘서고마워,빈방, LoobyLoo,내목소리들리니,180도,혼술하고싶은밤,지금뭐해ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4bwRyeT1afM', thumbnail: 'https://i.ytimg.com/vi/4bwRyeT1afM/hqdefault.jpg'},
+    {idx: 5, title: '권진아 (KwonJinAh)의 킬링보이스를 라이브로! - 끝, Lonely Night, Fly Away, 씨스루,여기까지,KNOCK, 위로,운이좋았지,뭔가잘못됐어, 여행가ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ePKBm4spBg', thumbnail: 'https://i.ytimg.com/vi/5ePKBm4spBg/hqdefault.jpg'},
   ]
+  // console.log(window.localStorage.getItem('liston'))
+  const [playList, setPlayList] = useState(
+    window.localStorage.getItem('liston') !== null
+    ? JSON.parse(window.localStorage.getItem('liston'))
+    : playListTemplate
+  )
+  // useEffect(() => {setPlayList(prev => prev)}, [playList])
+  const playListTemp = playList
 
   const [inputUrlInfo, setInputUrlInfo] = useState('')
   const getUrlInfo = async (url) => {
@@ -56,12 +64,17 @@ function App() {
   return (
     <div className="App">
       <div className="logo">
-        <img id="logo-image" src="/logo.svg" width="20px"/> ListOn
+        <img id="logo-image" src="/logo.svg" width="20px" /> ListOn
       </div>
 
-      <div className="list-info" title={listBox[0].description} onClick={() => setEditMode((prev => !prev))}>
-        <div className="list-title"><img id="list-image" src="/list.svg" width="20px"/>&nbsp;{listBox[0].title}</div>
-        <div className="list-author">&nbsp;-&nbsp;listed by @{listBox[0].username}</div>
+      <div className="list-info">
+        <div title={listBox[0].description}>
+          <div className="list-title"><img id="list-image" src="/list.svg" width="20px"/>&nbsp;{listBox[0].title}</div>
+          <div className="list-author">&nbsp;-&nbsp;listed by @{listBox[0].username}</div>
+        </div>
+        <div className="list-edit" title="Edit List" onClick={() => setEditMode((prev => !prev))}>
+          <img id="edit-image" src="/edit.svg" width="20px" />
+        </div>
       </div>
       
       <div className="play-window">
@@ -88,7 +101,8 @@ function App() {
       </div>
 
       <div className="add-check">
-        <div>영상 추가</div>
+        <div className="add-check-title">ADD</div>
+        {/* <hr /> */}
         <div>
           <input type="text" placeholder="영상 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
           <button onClick={() => {
@@ -113,9 +127,41 @@ function App() {
       </div>
 
       <div className="play-list">
+        <div className="play-list-title">
+          <div>LIST</div>
+          <div>
+            <img id="save-image" src="/save.svg" width="20px"
+              onClick={() => {window.localStorage.setItem('liston', JSON.stringify(playList));}} />
+          </div>
+        </div>
         { playList.map(({title, author, provider, url, thumbnail}, index) => (
           <div className="play-list-one">
             {/* <ReactPlayer url={url} width="180px" height="auto" /> */}
+            <div className="updown">
+              <div>
+                <img id="up-image" src="/up.svg" width="14px"
+                  onClick={() => {
+                    if (index !== 0) {
+                      const temp = playList[index - 1];
+                      playList[index - 1] = playList[index];
+                      playList[index] = temp;
+                      setPlayList(playList.slice())
+                    }
+                  }} />
+              </div>
+              <div>                
+                <img id="down-image" src="/down.svg" width="14px"
+                  onClick={() => {
+                    console.log(index, playList.length)
+                    if (index !== playList.length - 1) {
+                      const temp = playList[index + 1];
+                      playList[index + 1] = playList[index];
+                      playList[index] = temp;
+                      setPlayList(playList.slice())
+                    }
+                  }} />
+              </div>
+            </div>
             <div className="play-list-one-image"><img src={thumbnail} width="100%" height="auto" /></div>
             <div className="play-list-one-info">
               <div className="play-list-one-info-title">{title}</div>
@@ -161,6 +207,8 @@ function App() {
           // border: solid 2px #555;
           border-radius: 10px 10px 0 0;
           background-color: #444;
+          display: grid;
+          grid-template-columns: 1fr 20px;
         }
         .list-title {
           display: flex;
@@ -171,6 +219,11 @@ function App() {
         .list-author {
           font-size: 0.7rem;
           transform: skew(160deg);
+        }
+        .list-edit {
+          display: flex;
+          justify-content: center;
+          align-items: center;          
         }
 
         .play-window {
@@ -213,11 +266,19 @@ function App() {
 
         .add-check {
           ${editMode ? "display: block;" : "display: none;"}
-          width: calc(100% - 10px);
+          width: calc(100% - 15px);
           max-width: ${windowSize.xHalf}px;
-          margin-right: 10px;
+          margin-right: 5px;
+          border-radius: 5px;
+          padding: 5px;
+          background-color: #444;
           grid-area: 6 / 1 / 7 / 2;
           word-wrap: break-word;
+        }
+        .add-check-title {
+          padding: 5px;
+          background-color: #444;
+          font-weight: 600;
         }
         .add-check-play {
           margin-top: 10px;
@@ -234,7 +295,7 @@ function App() {
         .add-template-image {
           margin-right: 10px;
         }
-        .add-template-info {
+        .add-template-info {  
           font-size: 0.8rem;
         }
         .add-template-info-title {
@@ -246,14 +307,33 @@ function App() {
 
         .play-list {
           ${editMode ? "display: block;" : "display: none;"}
-          width: calc(100% - 10px);
+          width: calc(100% - 15px);
           max-width: ${windowSize.xHalf}px;
-          margin-left: 10px;
+          margin-left: 5px;
+          border-radius: 5px;
+          padding: 5px;
+          background-color: #444;
           grid-area: 6 / 2 / 7 / 3;
         }
-        .play-list-one {
+        .play-list-title {
+          padding: 5px;
+          background-color: #444;
+          font-weight: 600;
           display: grid;
-          grid-template-columns: 1fr 3fr;
+          grid-template-columns: 1fr 20px;
+        }
+        .play-list-one {
+          margin-top: 4px;
+          border-top: solid #777 1px;
+          padding-top: 6px;
+          display: grid;
+          grid-template-columns: 20px 1fr 3fr;
+        }
+        .updown {
+          margin: 5px 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
         .play-list-one-image {
           margin-right: 10px;
