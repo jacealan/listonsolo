@@ -31,8 +31,6 @@ function App() {
   // useEffect(() => {setPlayList(prev => prev)}, [playList])
   const playListTemp = playList
 
-  const inputUrlFocus = useRef(null)
-  useEffect(() => inputUrlFocus.current.focus(), [])
   const [inputUrlInfo, setInputUrlInfo] = useState('')
   const getUrlInfo = async (url) => {
     const response = await fetch(`https://noembed.com/embed?dataType=json&url=${url}`)
@@ -45,7 +43,9 @@ function App() {
     //   // urlInfo[key] = ${response[key]}`)
     // })
   }
-  
+  const inputUrlFocus = useRef(null)
+  useEffect(() => inputUrlFocus.current.focus(), [inputUrlInfo])
+    
   const checkTitle = useRef();
   const checkAuthor = useRef();
   useEffect(() => {
