@@ -243,13 +243,13 @@ function App() {
                     setInputUrl(url)
                     setCheckUrl(url)
                     await getUrlInfo(url)
+                    setPlayListEditIndex(index)
                     inputUrlInfo.title = title
                     inputUrlInfo.author_name = author
                     inputUrlInfo.provider_name = provider
                     inputUrlInfo.url = url
                     inputUrlInfo.thumbnail_url = thumbnail
                     setInputUrlInfo(JSON.parse(JSON.stringify(inputUrlInfo)))
-                    setPlayListEditIndex(index)
                   }} />
               </div>
             </div>
