@@ -45,6 +45,13 @@ function App() {
   }
   const inputUrlFocus = useRef(null)
   useEffect(() => inputUrlFocus.current.focus(), [inputUrl])
+  const InputBlock = () => (
+    <input type="text" ref={inputUrlFocus}
+    placeholder="추가할 영상 url을 입력하세요"
+    value={inputUrl}
+    onChange={(e) => setInputUrl(e.target.value)}></input>
+  )
+
     
   const checkTitle = useRef();
   const checkAuthor = useRef();
@@ -118,6 +125,7 @@ function App() {
             placeholder="추가할 영상 url을 입력하세요"
             value={inputUrl}
             onChange={(e) => setInputUrl(e.target.value)}></input>
+          <InputBlock />
           <button onClick={() => {
             setCheckUrl(inputUrl);
             getUrlInfo(inputUrl);
