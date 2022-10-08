@@ -109,25 +109,38 @@ function App() {
 
       <div className="add-check">
         <div className="add-check-title">ADD</div>
-        <div>
-          <button onClick={() => {
+        <div className="add-check-pastecheck">
+          <div className="paste-image">
+            <img id="paste-image" src="/paste.svg" width="20px" onClick={() => {
+              navigator.clipboard.readText().then(clipboardText => setInputUrl(clipboardText));   
+            }} />
+          </div>
+          {/* <button onClick={() => {
             navigator.clipboard.readText().then(clipboardText => setInputUrl(clipboardText));            
-          }}>Paste</button>
-          <input type="text"
-            placeholder="추가할 영상 url을 입력하세요."
-            value={inputUrl}
-            onChange={(e) => {
-              setInputUrl(e.target.value)
-              }}
-          />
-          <button onClick={() => {
+          }}>Paste</button> */}
+          <div>
+            <input type="text"
+              placeholder="추가할 영상 url을 입력하세요."
+              value={inputUrl}
+              onChange={(e) => {
+                setInputUrl(e.target.value)
+                }}
+            />
+          </div>
+          <div className="check-image">
+            <img id="check-image" src="/check.svg" width="20px" onClick={() => {
+              setCheckUrl(inputUrl);
+              getUrlInfo(inputUrl);
+            }} />
+          </div>
+          {/* <button onClick={() => {
             setCheckUrl(inputUrl);
             getUrlInfo(inputUrl);
-            }}>Check</button>
+            }}>Check</button> */}
         </div>
         <div className="add-checked">
           <div className="add-check-play">
-            <ReactPlayer url={checkUrl} width={`${windowSize.xHalf - 10}px`} height={`${(windowSize.xHalf - 10) / 2}px`} />
+            <ReactPlayer url={checkUrl} width={`${windowSize.xHalf - 15}px`} height={`${(windowSize.xHalf - 15) / 2}px`} />
             <div className="add-check-play-notice">외부 플레이가 제한된 영상도 있습니다.</div>
           </div>
           <div className="add-template">
@@ -338,8 +351,14 @@ function App() {
           grid-area: 6 / 1 / 7 / 2;
           word-wrap: break-word;
         }
+        .add-check-pastecheck {
+          display: grid;
+          grid-template-columns: 24px 1fr 24px;
+          justify-content: space-between;
+          align-items: center;
+        }
         input {
-          width: calc(100% - 140px);
+          width: ${windowSize.xHalf - 85}px;
           margin: 0 3px;
           border: solid 1px #aaa;
           border-radius: 5px;
@@ -355,6 +374,11 @@ function App() {
           padding: 5px;
           background-color: #aaa;
           color: #444;
+        }
+        .paste-image, .check-image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         .add-checked {
           display: ${inputUrlInfo !== '' ? "block" : "none"};'
