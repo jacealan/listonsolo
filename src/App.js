@@ -110,13 +110,15 @@ function App() {
       <div className="add-check">
         <div className="add-check-title">ADD</div>
         <div>
+          <button onClick={() => {
+            navigator.clipboard.readText().then(clipboardText => setInputUrl(clipboardText));            
+          }}>Paste</button>
           <input type="text"
-            placeholder="추가할 영상 url을 입력하세요"
+            placeholder="추가할 영상 url을 입력하세요."
             value={inputUrl}
-            onChange={onChangeInputUrl}
-            // onChange={(e) => {
-            //   setInputUrl(e.target.value)
-            //   }}
+            onChange={(e) => {
+              setInputUrl(e.target.value)
+              }}
           />
           <button onClick={() => {
             setCheckUrl(inputUrl);
@@ -337,7 +339,8 @@ function App() {
           word-wrap: break-word;
         }
         input {
-          width: calc(100% - 100px);
+          width: calc(100% - 140px);
+          margin: 0 3px;
           border: solid 1px #aaa;
           border-radius: 5px;
           padding: 5px;
@@ -346,9 +349,12 @@ function App() {
           color: #aaa;
         }
         button {          
-          width: 85px;
+          width: 60px;
+          border: none;
           border-radius: 5px;
           padding: 5px;
+          background-color: #aaa;
+          color: #444;
         }
         .add-checked {
           display: ${inputUrlInfo !== '' ? "block" : "none"};'
