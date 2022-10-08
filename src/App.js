@@ -405,6 +405,7 @@ function App() {
           overflow: hidden;
           width: calc(100% - 10px);
           border-radius: 5px;
+          outline: none;
           padding: 5px 5px 0 5px;
           background-color: #444;
           color: #ddd;
