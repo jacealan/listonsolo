@@ -44,7 +44,7 @@ function App() {
     // })
   }
   const inputUrlFocus = useRef(null)
-  useEffect(() => inputUrlFocus.current.focus(), [inputUrlInfo])
+  useEffect(() => inputUrlFocus.current.focus(), [inputUrl])
     
   const checkTitle = useRef();
   const checkAuthor = useRef();
