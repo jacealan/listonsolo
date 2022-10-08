@@ -1,23 +1,26 @@
 import { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 
+const styled = {}
+
 function App() {
   const [editMode, setEditMode] = useState(false)
   const [playNumber, setPlayNumber] = useState(0)
   const [playUrl, setPlayUrl] = useState()
   const [inputUrl, setInputUrl] = useState('')
   const [checkUrl, setCheckUrl] = useState('')
+  
   const listBox = [
     {idx: 0, title: 'BEST LIST', description: '딩고 뮤직 킬링보이스 & ...', username: 'jace'},
   ]
   const playListTemplate = [
     // {title: 'YENA (최예나) - SMILEY (Feat. BIBI) MV', author: 'Stone Music Entertainment', provider: 'YouTube', url: 'https://youtu.be/y9kkXTucnLU' , thumbnail: 'https://i.ytimg.com/vi/y9kkXTucnLU/hqdefault.jpg'},
-    {idx: 0, title: '멜로망스(MeloMance)의 킬링보이스를 라이브로! - 인사, 동화, 입맞춤, You, 고백, 질투가좋아, 부끄럼, 선물, 짙어져, 좋은날, 욕심, 사랑인가봐, 축제, 초대', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/hn4XiirKdNE', thumbnail: 'https://i.ytimg.com/vi/hn4XiirKdNE/hqdefault.jpg'},
-    {idx: 1, title: '치즈(CHEEZE)의 킬링보이스를 라이브로!- Madeleine Love, 어떻게 생각해, Mood Indigo, 빈칸에게, 퐁당, Perhaps Love, 좋아해 | 딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/fyDz91HDt4g', thumbnail: 'https://i.ytimg.com/vi/fyDz91HDt4g/hqdefault.jpg'},
-    {idx: 2, title: '태연(TAEYEON)의 킬링보이스를 라이브로! - I,그대라는 시,만약에,11:11,Blue,Time Lapse,Weekend,불티,사계,Gravity,INVU,너를 그리는 시간', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ch94AaPZRQ', thumbnail: 'https://i.ytimg.com/vi/5ch94AaPZRQ/hqdefault.jpg'},
-    {idx: 3, title: '나윤권(Na Yoon Kwon)의 킬링보이스를 라이브로!-나였으면,기대,동감,애창곡,바람이좋은날,약한남자,뒷모습,멍청이,오늘이지나면,헤어져보자ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4w3p3ef2ydQ', thumbnail: 'https://i.ytimg.com/vi/4w3p3ef2ydQ/hqdefault.jpg'},
-    {idx: 4, title: '벤(BEN)의 킬링보이스를 라이브로! - 열애중,오늘은가지마,꿈처럼,갈수가없어,눈사람,헤어져줘서고마워,빈방, LoobyLoo,내목소리들리니,180도,혼술하고싶은밤,지금뭐해ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4bwRyeT1afM', thumbnail: 'https://i.ytimg.com/vi/4bwRyeT1afM/hqdefault.jpg'},
-    {idx: 5, title: '권진아 (KwonJinAh)의 킬링보이스를 라이브로! - 끝, Lonely Night, Fly Away, 씨스루,여기까지,KNOCK, 위로,운이좋았지,뭔가잘못됐어, 여행가ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ePKBm4spBg', thumbnail: 'https://i.ytimg.com/vi/5ePKBm4spBg/hqdefault.jpg'},
+    {title: '멜로망스(MeloMance)의 킬링보이스를 라이브로! - 인사, 동화, 입맞춤, You, 고백, 질투가좋아, 부끄럼, 선물, 짙어져, 좋은날, 욕심, 사랑인가봐, 축제, 초대', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/hn4XiirKdNE', thumbnail: 'https://i.ytimg.com/vi/hn4XiirKdNE/hqdefault.jpg'},
+    {title: '치즈(CHEEZE)의 킬링보이스를 라이브로!- Madeleine Love, 어떻게 생각해, Mood Indigo, 빈칸에게, 퐁당, Perhaps Love, 좋아해 | 딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/fyDz91HDt4g', thumbnail: 'https://i.ytimg.com/vi/fyDz91HDt4g/hqdefault.jpg'},
+    {title: '태연(TAEYEON)의 킬링보이스를 라이브로! - I,그대라는 시,만약에,11:11,Blue,Time Lapse,Weekend,불티,사계,Gravity,INVU,너를 그리는 시간', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ch94AaPZRQ', thumbnail: 'https://i.ytimg.com/vi/5ch94AaPZRQ/hqdefault.jpg'},
+    {title: '나윤권(Na Yoon Kwon)의 킬링보이스를 라이브로!-나였으면,기대,동감,애창곡,바람이좋은날,약한남자,뒷모습,멍청이,오늘이지나면,헤어져보자ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4w3p3ef2ydQ', thumbnail: 'https://i.ytimg.com/vi/4w3p3ef2ydQ/hqdefault.jpg'},
+    {title: '벤(BEN)의 킬링보이스를 라이브로! - 열애중,오늘은가지마,꿈처럼,갈수가없어,눈사람,헤어져줘서고마워,빈방, LoobyLoo,내목소리들리니,180도,혼술하고싶은밤,지금뭐해ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4bwRyeT1afM', thumbnail: 'https://i.ytimg.com/vi/4bwRyeT1afM/hqdefault.jpg'},
+    {title: '권진아 (KwonJinAh)의 킬링보이스를 라이브로! - 끝, Lonely Night, Fly Away, 씨스루,여기까지,KNOCK, 위로,운이좋았지,뭔가잘못됐어, 여행가ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ePKBm4spBg', thumbnail: 'https://i.ytimg.com/vi/5ePKBm4spBg/hqdefault.jpg'},
   ]
   // console.log(window.localStorage.getItem('liston'))
   const [playList, setPlayList] = useState(
@@ -32,21 +35,27 @@ function App() {
   const getUrlInfo = async (url) => {
     const response = await fetch(`https://noembed.com/embed?dataType=json&url=${url}`)
                       .then((response) => response.json());
-    console.log(response)
+    // console.log(response)
     setInputUrlInfo(response)
-    let urlInfo = {}
-    Object.keys(response).map((key, index) => {
-      console.log(key, response[key])
-      // urlInfo[key] = ${response[key]}`)
-  })
-    
-    // setInputUrlInfo(urlInfo)
+    // let urlInfo = {}
+    // Object.keys(response).map((key, index) => {
+    //   console.log(key, response[key])
+    //   // urlInfo[key] = ${response[key]}`)
+    // })
   }
+  
+  const checkTitle = useRef();
+  const checkAuthor = useRef();
+  useEffect(() => {
+    checkTitle.current.style.height = 'auto'
+    checkTitle.current.style.height = `${checkTitle.current.scrollHeight}px`
+    checkAuthor.current.style.height = 'auto'
+    checkAuthor.current.style.height = `${checkAuthor.current.scrollHeight}px`
+  }, [inputUrlInfo])
 
   const [windowSize, setWindowSize] = useState({x: 960, y: 960})
   const changeSizeTotal = () => {
     const x960 = document.documentElement.clientWidth < 960 ? document.documentElement.clientWidth : 960
-    // const x960 = window.innerWidth < 960 ? window.innerWidth : 960
     setWindowSize({
       x: x960,
       y: window.innerHeight,
@@ -102,36 +111,55 @@ function App() {
 
       <div className="add-check">
         <div className="add-check-title">ADD</div>
-        {/* <hr /> */}
         <div>
-          <input type="text" placeholder="추가할 영상 url을 입력하세요" value={inputUrl} onChange={(e) => setInputUrl(e.target.value)}></input>
+          <input type="text"
+            placeholder="추가할 영상 url을 입력하세요"
+            value={inputUrl}
+            onChange={(e) => setInputUrl(e.target.value)}></input>
           <button onClick={() => {
             setCheckUrl(inputUrl);
             getUrlInfo(inputUrl);
             }}>Check</button>
         </div>
-        <div>{inputUrlInfo !== '' ? (
-          <>
-            <div className="add-check-play">
-              <ReactPlayer url={checkUrl} width="470px" height="235px" />
-            </div>
-            <div className="add-template">
-              <div className="add-template-image"><img src={inputUrlInfo.thumbnail_url} width="100%" height="auto" /></div>
-              <div className="add-template-info">
-                <div className="add-template-info-title">{inputUrlInfo.title}</div>
-                <div className="add-template-info-author">[ {inputUrlInfo.author_name} ]</div>
-              </div>
-            </div>
-          </>
-        ) : ""}</div>
-        <div className="add-check-edit">
-          <div>
-            <input type="text" value={inputUrlInfo.title} onChange={(e) => setInputUrl(e.target.value)}></input>
-            <input type="text" value={inputUrlInfo.author} onChange={(e) => setInputUrl(e.target.value)}></input>
+        <div className="add-checked">
+          <div className="add-check-play">
+            <ReactPlayer url={checkUrl} width="470px" height="235px" />
+            <div className="add-check-play-notice">외부 플레이가 제한된 영상도 있습니다.</div>
           </div>
-          <div className="add-check-edit-button">
-            <img id="add-image" src="/add.svg" width="20px"
-              onClick={() => {}} />
+          <div className="add-template">
+            <div className="add-template-image"><img src={inputUrlInfo.thumbnail_url} width="100%" height="auto" /></div>
+            <div className="add-template-info">
+              <div className="add-template-info-title">{inputUrlInfo.title}</div>
+              <div className="add-template-info-author">[ {inputUrlInfo.author_name} ]</div>
+            </div>
+          </div>
+          <div className="add-check-edit">
+            <div>
+              <div className="label">TITLE</div>
+              <textarea ref={checkTitle} value={inputUrlInfo.title} rows={1}
+                onChange={(e) => {
+                  const temp = inputUrlInfo
+                  temp.title = e.target.value
+                  setInputUrlInfo(JSON.parse(JSON.stringify(temp)))
+                }} />
+              <div className="label">AUTHOR</div>
+              <textarea ref={checkAuthor} value={inputUrlInfo.author_name} rows={1}
+                onChange={(e) => {
+                  const temp = inputUrlInfo
+                  temp.author_name = e.target.value
+                  setInputUrlInfo(JSON.parse(JSON.stringify(temp)))
+                }} />
+            </div>
+            <div className="add-check-edit-button">
+              <div>
+                <img id="add-image" src="/add.svg" width="20px"
+                  onClick={() => {
+                    playList.push({title: inputUrlInfo.title, author: inputUrlInfo.author_name, provider: inputUrlInfo.provider_name, url: inputUrlInfo.url, thumbnail: inputUrlInfo.thumbnail_url})
+                    setPlayList(playList.slice())
+                  }} />
+              </div>
+              <div>LIST에<br />추가</div>
+            </div>
           </div>
         </div>
       </div>
@@ -146,7 +174,6 @@ function App() {
         </div>
         { playList.map(({title, author, provider, url, thumbnail}, index) => (
           <div className="play-list-one">
-            {/* <ReactPlayer url={url} width="180px" height="auto" /> */}
             <div className="upNdown">
               <div>
                 <img id="up-image" src="/up.svg" width="14px"
@@ -181,12 +208,6 @@ function App() {
               <div>
                 <img id="delete-image" src="/delete.svg" width="14px"
                   onClick={() => {
-                    // if (index !== 0) {
-                    //   const temp = playList[index - 1];
-                    //   playList[index - 1] = playList[index];
-                    //   playList[index] = temp;
-                    //   setPlayList(playList.slice())
-                    // }
                     playList.splice(index, 1)
                     setPlayList(playList.slice())
                   }} />
@@ -213,9 +234,9 @@ function App() {
           Fully Supported Media: YouTube, Facebook, SoundClound, Vimeo<br />
           Supported Media: Treamable, Vidme, Wistia, Twitch, DailyMotion, Vidyard
         </div>
-        <div className="copyright">ⓒ Jace</div>
+        <div className="copyright">Copyright. Jace</div>
       </footer>
-      {/* <div claaName="footer"></div> */}
+
       <style jsx>{`
         .App {
           width: 100vw;
@@ -327,6 +348,17 @@ function App() {
           border-radius: 5px;
           padding: 5px;
         }
+        .add-checked {
+          display: ${inputUrlInfo !== '' ? "block" : "none"};'
+        }
+        .add-check-play-notice {
+          margin-top: 3px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.7rem;
+          color: #777;
+        }
         .add-check-title {
           padding: 5px;
           background-color: #444;
@@ -351,26 +383,43 @@ function App() {
           font-size: 0.8rem;
         }
         .add-template-info-title {
+          word-break: break-all;
         }
         .add-template-info-author {
           padding-right: 10px;
           font-size: 0.7rem;
           transform: skew(170deg);
           text-align: right;
+          word-break: break-all;
         }
         .add-check-edit {
+          margin-top: 5px;
+          border-top: solid #777 1px;
+          padding-top: 5px;
           display: grid;
-          grid-template-columns: 1fr 90px;
+          grid-template-columns: 1fr 40px;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+        textarea {
+          overflow: hidden;
+          width: calc(100% - 10px);
+          border-radius: 5px;
+          padding: 5px 5px 0 5px;
+          background-color: #444;
+          color: #ddd;
         }
         .add-check-edit-button {
           margin: 5px;
           border-radius: 5px;
-          background-color: #555;
-          font-size: 2rem;
-          font-weight: 600;
+          // background-color: #555;
+          font-size: 0.6rem;
+          font-weight: 400;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
+          text-align: center;
         }
 
         .play-list {
@@ -443,6 +492,7 @@ function App() {
           justify-content: flex-end;
           // align-items: flex-end;
           // text-align: right;
+          font-size: 0.8rem;
         }
       `}</style>
     </div>
