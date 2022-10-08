@@ -231,14 +231,16 @@ function App() {
               </div>
               <div>                
                 <img id="edit-image" src="/edit.svg" width="14px"
-                  onClick={() => {
-                    console.log(index, playList.length)
-                    if (index !== playList.length - 1) {
-                      const temp = playList[index + 1];
-                      playList[index + 1] = playList[index];
-                      playList[index] = temp;
-                      setPlayList(playList.slice())
-                    }
+                  onClick={async () => {
+                    setInputUrl(url)
+                    setCheckUrl(url)
+                    await getUrlInfo(url)
+                    inputUrlInfo.title = title
+                    inputUrlInfo.author_name = author
+                    inputUrlInfo.provider_name = provider
+                    inputUrlInfo.url = url
+                    inputUrlInfo.thumbnail_url = thumbnail
+                    setInputUrlInfo(JSON.parse(JSON.stringify(inputUrlInfo)))
                   }} />
               </div>
             </div>
