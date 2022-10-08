@@ -27,7 +27,8 @@ function App() {
     : playListTemplate
   )
   // useEffect(() => {setPlayList(prev => prev)}, [playList])
-  const playListTemp = playList
+  // const playListTemp = playList
+  const [playListEditIndex, setPlayListEditIndex] = useState(null)
 
   const [inputUrlInfo, setInputUrlInfo] = useState('')
   const getUrlInfo = async (url) => {
@@ -171,11 +172,18 @@ function App() {
               <div>
                 <img id="add-image" src="/add.svg" width="20px"
                   onClick={() => {
-                    playList.push({title: inputUrlInfo.title, author: inputUrlInfo.author_name, provider: inputUrlInfo.provider_name, url: inputUrlInfo.url, thumbnail: inputUrlInfo.thumbnail_url})
-                    setPlayList(playList.slice())
+                    console.log(playListEditIndex)
+                    if (playListEditIndex !== null) {
+                      playList[playListEditIndex] = {title: inputUrlInfo.title, author: inputUrlInfo.author_name, provider: inputUrlInfo.provider_name, url: inputUrlInfo.url, thumbnail: inputUrlInfo.thumbnail_url}
+                      setPlayList(playList.slice())
+                      setPlayListEditIndex(null)
+                    } else {
+                      playList.push({title: inputUrlInfo.title, author: inputUrlInfo.author_name, provider: inputUrlInfo.provider_name, url: inputUrlInfo.url, thumbnail: inputUrlInfo.thumbnail_url})
+                      setPlayList(playList.slice())
+                    }
                   }} />
               </div>
-              <div>LIST에<br />추가</div>
+              <div>LIST로</div>
             </div>
           </div>
         </div>
@@ -241,6 +249,7 @@ function App() {
                     inputUrlInfo.url = url
                     inputUrlInfo.thumbnail_url = thumbnail
                     setInputUrlInfo(JSON.parse(JSON.stringify(inputUrlInfo)))
+                    setPlayListEditIndex(index)
                   }} />
               </div>
             </div>
