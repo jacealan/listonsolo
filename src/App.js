@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player/lazy';
 
-const styled = {}
-
 function App() {
   const [editMode, setEditMode] = useState(false)
   const [playNumber, setPlayNumber] = useState(0)
@@ -22,7 +20,6 @@ function App() {
     {title: '벤(BEN)의 킬링보이스를 라이브로! - 열애중,오늘은가지마,꿈처럼,갈수가없어,눈사람,헤어져줘서고마워,빈방, LoobyLoo,내목소리들리니,180도,혼술하고싶은밤,지금뭐해ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/4bwRyeT1afM', thumbnail: 'https://i.ytimg.com/vi/4bwRyeT1afM/hqdefault.jpg'},
     {title: '권진아 (KwonJinAh)의 킬링보이스를 라이브로! - 끝, Lonely Night, Fly Away, 씨스루,여기까지,KNOCK, 위로,운이좋았지,뭔가잘못됐어, 여행가ㅣ딩고뮤직', author: '딩고 뮤직 / dingo music', provider: 'YouTube', url: 'https://youtu.be/5ePKBm4spBg', thumbnail: 'https://i.ytimg.com/vi/5ePKBm4spBg/hqdefault.jpg'},
   ]
-  // console.log(window.localStorage.getItem('liston'))
   const [playList, setPlayList] = useState(
     window.localStorage.getItem('liston') !== null
     ? JSON.parse(window.localStorage.getItem('liston'))
@@ -43,14 +40,7 @@ function App() {
     //   // urlInfo[key] = ${response[key]}`)
     // })
   }
-  const inputUrlFocus = useRef(null)
-  // useEffect(() => inputUrlFocus.current.focus(), [inputUrl])
-  // const InputBlock = () => (
-  //   <input type="text"
-  //   placeholder="추가할 영상 url을 입력하세요"
-  //   value={inputUrl}
-  //   onChange={(e) => setInputUrl(e.target.value)}></input>
-  // )
+  const inputUrlText = useRef(null)
 
     
   const checkTitle = useRef();
@@ -121,13 +111,12 @@ function App() {
       <div className="add-check">
         <div className="add-check-title">ADD</div>
         <div>
-          <input type="text" />
-          <input type="text" ref={inputUrlFocus}
+          <input type="text"
             placeholder="추가할 영상 url을 입력하세요"
-            value={inputUrl}
+            // value={inputUrl}
+            // value={inputUrlText}
             onChange={(e) => {
               setInputUrl(e.target.value)
-              inputUrlFocus.current.focus()
               }}></input>
           {/* <InputBlock /> */}
           <button onClick={() => {
