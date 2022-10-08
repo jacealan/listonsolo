@@ -121,6 +121,7 @@ function App() {
       <div className="add-check">
         <div className="add-check-title">ADD</div>
         <div>
+          <input type="text" />
           <input type="text" ref={inputUrlFocus}
             placeholder="추가할 영상 url을 입력하세요"
             value={inputUrl}
