@@ -127,7 +127,7 @@ function App() {
         </div>
         <div className="add-checked">
           <div className="add-check-play">
-            <ReactPlayer url={checkUrl} width="470px" height="235px" />
+            <ReactPlayer url={checkUrl} width={`${windowSize.xHalf - 10}px`} height={`${(windowSize.xHalf - 10) / 2}px`} />
             <div className="add-check-play-notice">외부 플레이가 제한된 영상도 있습니다.</div>
           </div>
           <div className="add-template">
