@@ -7,6 +7,7 @@ function App() {
   const [playUrl, setPlayUrl] = useState()
   const [inputUrl, setInputUrl] = useState('')
   const [checkUrl, setCheckUrl] = useState('')
+  const onChangeInputUrl = (e) => setInputUrl(e.target.value)
   
   const listBox = [
     {idx: 0, title: 'BEST LIST', description: '딩고 뮤직 킬링보이스 & ...', username: 'jace'},
@@ -40,9 +41,7 @@ function App() {
     //   // urlInfo[key] = ${response[key]}`)
     // })
   }
-  const inputUrlText = useRef(null)
 
-    
   const checkTitle = useRef();
   const checkAuthor = useRef();
   useEffect(() => {
@@ -113,12 +112,12 @@ function App() {
         <div>
           <input type="text"
             placeholder="추가할 영상 url을 입력하세요"
-            // value={inputUrl}
-            // value={inputUrlText}
-            onChange={(e) => {
-              setInputUrl(e.target.value)
-              }}></input>
-          {/* <InputBlock /> */}
+            value={inputUrl}
+            onChange={onChangeInputUrl}
+            // onChange={(e) => {
+            //   setInputUrl(e.target.value)
+            //   }}
+          />
           <button onClick={() => {
             setCheckUrl(inputUrl);
             getUrlInfo(inputUrl);
