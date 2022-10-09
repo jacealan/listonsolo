@@ -1,4 +1,5 @@
-# ListOn
+# ListOnSolo
+https://listonsolo.vercel.app/
 
 ## Use Library
 - React: https://ko.reactjs.org/
