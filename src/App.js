@@ -72,7 +72,7 @@ function App() {
   return (
     <div className="App">
       <div className="logo">
-        <img id="logo-image" src="/logo.svg" width="20px" /> ListOn
+        <img id="logo-image" src="/logo.svg" width="20px" /> ListOn solo
       </div>
 
       <div className="list-info">
