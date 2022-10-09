@@ -80,7 +80,8 @@ function App() {
           <div className="list-title"><img id="list-image" src="/list.svg" width="20px"/>&nbsp;{listBox[0].title}</div>
           <div className="list-author">&nbsp;-&nbsp;listed by @{listBox[0].username}</div>
         </div>
-        <div className="list-edit" title="Edit List" onClick={() => setEditMode((prev => !prev))}>
+        <div className="list-edit" title="Edit List" onClick={() => {}}>
+        {/* {setEditMode((prev => !prev))} */}
           <img id="edit-list-image" src="/edit-list.svg" width="20px" />
         </div>
       </div>
