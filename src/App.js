@@ -9,7 +9,6 @@ import { TextBulletListSquareEdit, CopyArrowRight } from '@styled-icons/fluentui
 import { PlaylistAddCheck, DeleteForever } from '@styled-icons/material-rounded'
 import { FileMark } from '@styled-icons/remix-line'
 import { InsertRowTop, InsertRowBottom } from '@styled-icons/remix-editor'
-import { CheckmarkSquare } from '@styled-icons/evaicons-solid'
 import { Youtube, Vimeo, Soundcloud, Facebook } from '@styled-icons/fa-brands'
 
 //////////
@@ -452,7 +451,7 @@ function App() {
                 setEditListTitle(e.target.value)
                 }}
               onKeyUp={(e) => {
-                if (e.code == 'Enter') {
+                if (e.code === 'Enter') {
                   setListTitle(editListTitle)
                 }
               }}
@@ -530,11 +529,22 @@ function App() {
 
 
       <Footer width={windowSize.x}>
-        <Flex>
-          Supported Media: YouTube, Vimeo, SoundClound, Facebook<br />
+        <div>
+          <div>Supported Media: YouTube, Vimeo, SoundClound, Facebook</div>
+          <div>Hosted on <a href="https://vercel.com/">▲Vercel</a></div>
           {/* Supported Media: Treamable, Vidme, Wistia, Twitch, DailyMotion, Vidyard */}
-        </Flex>
-        <FlexRight>Copyright. Jace</FlexRight>
+        </div>
+        <div>
+        <FlexRight>
+          Copyright. Jace
+        </FlexRight>
+        
+        <FlexRight>
+          <a href="mailto:jacealan@naver.com">@Naver</a>&nbsp;
+          {/* <a href="mailto:jacealan@daum.net">@Daum</a>&nbsp; */}
+          <a href="mailto:jacealan1@gmail.com">@Gmail</a>
+        </FlexRight>
+        </div>
       </Footer>
 
     </Container>
