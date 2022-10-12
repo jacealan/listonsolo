@@ -1,5 +1,12 @@
 * {
   user-select: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+input, textarea {
+  user-select: text;
 }
 
 body {
@@ -11,8 +18,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
-  background-color: #333;
+  background-color: #222;
   color: #ccc;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 code {
