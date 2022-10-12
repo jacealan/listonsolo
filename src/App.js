@@ -457,7 +457,7 @@ function App() {
               }}
             />
             <Flex button>
-              <FileMark
+              <FileMark size="28"
                 onClick={() => {
                   window.localStorage.setItem('listonTitle', JSON.stringify(listTitle));
                   window.localStorage.setItem('liston', JSON.stringify(playList));
