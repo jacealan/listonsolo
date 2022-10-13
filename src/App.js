@@ -350,9 +350,9 @@ function App() {
           <Flex spaceBetween margin="0 0 10px 0">
             <div>ADD</div>
             <FlexRight>
-              <a href="https://www.youtube.com/" target="_blank"><Youtube size="20" /></a>&nbsp;
-              <a href="https://vimeo.com/watch" target="_blank"><Vimeo size="18" /></a>&nbsp;
-              <a href="https://soundcloud.com/" target="_blank"><Soundcloud size="20" /></a>
+              <a href="https://www.youtube.com/" target="_blank" rel="noreferrer"><Youtube size="20" /></a>&nbsp;
+              <a href="https://vimeo.com/watch" target="_blank" rel="noreferrer"><Vimeo size="18" /></a>&nbsp;
+              <a href="https://soundcloud.com/" target="_blank" rel="noreferrer"><Soundcloud size="20" /></a>
             </FlexRight>
           </Flex>
           <Flex spaceBetween>
@@ -537,8 +537,8 @@ function App() {
 
       <Footer width={windowSize.x}>
         <div>
-          <div>Supported Media: YouTube, Vimeo, SoundClound, Facebook</div>
-          <div>Hosted on <a href="https://vercel.com/">▲Vercel</a></div>
+          <Flex>Supported Media: YouTube, Vimeo, SoundClound, Facebook</Flex>
+          <Flex>Hosted on <a href="https://vercel.com/">▲Vercel</a></Flex>
           {/* Supported Media: Treamable, Vidme, Wistia, Twitch, DailyMotion, Vidyard */}
         </div>
         <div>
