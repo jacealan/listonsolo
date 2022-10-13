@@ -347,7 +347,14 @@ function App() {
     {editOnOff ? (
       <EditMode>
         <EditBlock>
-          <EditTitle>ADD</EditTitle>
+          <Flex spaceBetween margin="0 0 10px 0">
+            <div>ADD</div>
+            <FlexRight>
+              <a href="https://www.youtube.com/" target="_blank"><Youtube size="20" /></a>&nbsp;
+              <a href="https://vimeo.com/watch" target="_blank"><Vimeo size="18" /></a>&nbsp;
+              <a href="https://soundcloud.com/" target="_blank"><Soundcloud size="20" /></a>
+            </FlexRight>
+          </Flex>
           <Flex spaceBetween>
             <Button><CopyArrowRight size="24" onClick={() => {
               navigator.clipboard.readText().then(clipboardText => setInputUrl(clipboardText));   
